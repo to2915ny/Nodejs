@@ -1,4 +1,4 @@
-#Lets Learn NodeJS!!!
+# Lets Learn NodeJS!!!
 
 Node는 크롬의 V8엔진을 사용하는 Runtime Environment이다.
 기본적으로 Javascript에서 사용되는 document. function들과는다르게 file을 읽거나 포트에서 request들을 받을수있다.
@@ -30,7 +30,7 @@ Single Thread는 Request가 들어오면 Database에 데이터를 물어본다(Q
 노드로 만드는것이 아주 아주 안좋다.
 <hr/>
 
-##Enough With Theory....Now the Real Stuff
+## Enough With Theory....Now the Real Stuff
 
 우선 NodeJS를 설치 해야되는데, Terminal이나 CMD에 node --version을 쳐보자. node가없거나 최신 버젼이 아니면 <https://nodejs.org>에 들어가서
 다운을 받아주자. 설치를 끝내고 다시 node --version을 치면 Node가 정상적으로 최신버전으로 설치된것을 볼수있다.
