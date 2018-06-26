@@ -37,4 +37,59 @@ Single Thread는 Request가 들어오면 Database에 데이터를 물어본다(Q
 
 이제 첫번째 앱을 한번 만들어보자. Repository에 있는 firstApp.js를 참조.
 
-실행시킬려면 node _file name_ 을 terminal 에서 실해시켜주면된다.
+실행시킬려면 node _\_filename_ 을 terminal 에서 실행시켜주면된다.
+
+#### 모듈에 대해서
+
+모듈은 자바의 클래스같은 개념이다. 모듈에선언된 변수들과 function들은 private으로 선언되어있다.
+
+```
+var url = "http://log.io"
+
+function log(message){
+  //Send an HTTP Request
+  console.log(message);
+}
+module.exports.log = log;
+module.exports.endPoint = url;
+```
+여기서 다른 모듈에서 쓰고싶은 function이나 변수가 있다면 위에와 같이 export를 해줘야된다.
+그러면 모듈을 써서 logger라는 간단한 모듈을 만들어서 모듈들끼리 어떻게 interact하는지 알아보자.
+
+```
+var record = require("./logger");
+record.log("This is the module")
+```
+firstApp.js에 위에 있는 코드를 추가했다.
+logger 라는 변수를 선언한뒤 require function을 썼다. 이 require function을 써서 부르고 싶은 모듈을 loading한다. 지금은 logger.js를 부르고싶으니까, 저렇게쓴다. 그리고 function들이 실제로 실행되는 모듈을 main module이라고 한다. firstApp.js는 우리의 main module 이다.
+
+logger.js에 있는 log function을 export했기 때문에 main module에서 log function을 쓸수있다.
+다시 node firstApp.js을 실행시키면 This is the module이라는 log message가 나온다.
+
+##### **꿀팁**
+
+error가 생기면 *jshint* 를 써보자. *jshint* 를 쓰면 debugging 하기 쉬워진다.
+
+<hr/>
+
+<https://nodejs.org/dist/latest-v8.x/docs/api/> 여기에 이미 built-in module들이 엄청나게 많다. 이걸 참조해서 쓰자.
+
+예를 들어서 path라는 built-in module이있다. 한번 써보도록 하자.
+
+```
+const line = require("path");
+
+var file = line.parse(__filename);
+
+console.log(file);
+```
+아까전과 마찬가지로 line이라는 constant에 path라는 built-in module을 loading했다. built-in 이기때문에 path를 지정하지않는다. path module에는 parse라는 function이있다. file이라는 변수에 넣고 logging을 해보자.
+
+```
+{ root: '/',
+  dir: '/Users/seungyonglee/Documents/git/Nodejs',
+  base: 'firstApp.js',
+  ext: '.js',
+  name: 'firstApp' }
+```
+이런식의 json 형태로 결과값을 parsing 해준다.  
