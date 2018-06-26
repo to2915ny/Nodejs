@@ -92,4 +92,37 @@ console.log(file);
   ext: '.js',
   name: 'firstApp' }
 ```
-이런식의 json 형태로 결과값을 parsing 해준다.  
+이런식의 json 형태로 결과값을 parsing 해준다.
+
+#### File 모듈
+
+```
+const fs = require("fs");
+```
+fs를 loading 한다.
+
+fs module에는 Synchronous와 Asynchronous function들이있다. Synchronous function들이 코드를 쓰기엔 간편하지만, Asynchronous를쓰는것을 일반화하자.
+
+우선 Synchronous 방법.
+fs module에 있는데 readdirSync function을 예로 써보자.
+```
+const fs = require("fs");
+var files = fs.readdirSync("./");
+console.log(files);
+```
+이런식으로 매욱 간단하게 현재 다이렉토리를 출력해준다.
+
+Asynchronous 방법
+
+readdir function
+```
+const fs = require("fs");
+fs.readdir("./",function(err,files){
+
+  if(err)
+  console.log("Error",err);
+  else
+  console.log("Result",files);
+});
+```
+위와같이 Asynchronous는 Exception handling을 해줘야된다. argument에 먼저 다이렉토리의 path 그다음 result또는 err를 출력하는 function을 추가한다.
